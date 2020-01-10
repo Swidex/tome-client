@@ -21,7 +21,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuard]
-  }
+  },
+  { path: 'summon', loadChildren: './pages/summon/summon.module#SummonPageModule' },
+  { path: 'providers', loadChildren: './pages/providers/providers.module#ProvidersPageModule' }
+
 ];
 
 @NgModule({

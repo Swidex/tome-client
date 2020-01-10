@@ -22,6 +22,13 @@ export interface User {
   expanded?: boolean;
 }
 
+export interface Provider {
+  name: string;
+  id: string;
+  _id: string;
+  expanded?: boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -79,6 +86,16 @@ export class ApiService {
     );
   }
 
+  pair(credentials: {email: string, password: string }) {
+    return this.http.post(`${environment.apiUrl}/providers`, credentials).pipe(
+      take(1),
+      switchMap(res => {
+        console.log('result: ', res);
+        return this.getAllProviders();
+      })
+    );
+  }
+
   getUserToken() {
     return this.userData.getValue();
   }
@@ -92,6 +109,12 @@ export class ApiService {
 
   getAllUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${environment.apiUrl}/users`).pipe(
+      take(1)
+    );
+  }
+
+  getAllProviders(): Observable<Provider[]> {
+    return this.http.get<Provider[]>(`${environment.apiUrl}/providers`).pipe(
       take(1)
     );
   }

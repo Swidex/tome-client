@@ -18,6 +18,26 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: 'providers',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../providers/providers.module').then(m => m.ProvidersPageModule)
+          }
+        ]
+      },
+      {
+        path: 'summon',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../summon/summon.module').then(m => m.SummonPageModule)
+          }
+        ]
+      },
+      {
         path: 'users',
         children: [
           {
