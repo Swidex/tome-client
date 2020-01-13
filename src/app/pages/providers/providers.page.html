@@ -19,11 +19,7 @@
     <ion-card-content>
       <ion-item>
         <ion-icon class="field-icon" name="link"></ion-icon>
-        <ion-input required=true placeholder="Provider Email" name="email" type="email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-icon class="field-icon" name="link"></ion-icon>
-        <ion-input required=true placeholder="Provider Password" name="password" type="password"></ion-input>
+        <ion-input required=true placeholder="Provider ID" name="name" [(ngModel)]="credentials.name"></ion-input>
       </ion-item><br>
       <ion-button color="secondary" type="submit" size="full" expand="block" (click)="pair()">PAIR</ion-button>
     </ion-card-content>
@@ -33,6 +29,26 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  
+  <ion-list *ngIf="providers.length == 0">
+    <ion-card *ngFor="let i of [1,2,3,4]">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ion-list>
+
+  <ion-list>
+    <ion-card class="ion-padding" *ngFor="let provider of providers">
+
+      <ion-card-header>
+        <ion-card-title>
+          {{ provider.name }}
+        </ion-card-title>
+      </ion-card-header>
+
+    </ion-card>
+  </ion-list>
 
 </ion-content>

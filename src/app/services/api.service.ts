@@ -86,7 +86,7 @@ export class ApiService {
     );
   }
 
-  pair(credentials: {email: string, password: string }) {
+  pair(credentials: {name: string}) {
     return this.http.post(`${environment.apiUrl}/providers`, credentials).pipe(
       take(1),
       switchMap(res => {

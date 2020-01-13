@@ -13,9 +13,10 @@ import { Router } from '@angular/router';
 export class ProvidersPage implements OnInit {
 
   credentials = {
-    email: '',
-    password: ''
+    name: ''
   };
+
+  providers: Provider[] = [];
  
   constructor(
     private api: ApiService,
@@ -24,7 +25,9 @@ export class ProvidersPage implements OnInit {
     private loadingCtrl: LoadingController
   ) {}
  
-  ngOnInit() { }
+  ngOnInit() {
+    this.loadProviders();
+  }
  
   async pair() {
     const loading = await this.loadingCtrl.create();
@@ -34,7 +37,7 @@ export class ProvidersPage implements OnInit {
       finalize(() => loading.dismiss())
     )
     .subscribe(res => {
-        this.router.navigateByUrl('/app');
+      this.loadProviders();
     }, async err => {
       const alert = await this.alertCtrl.create({
         header: 'Pairing failed',
@@ -43,6 +46,23 @@ export class ProvidersPage implements OnInit {
       });
       await alert.present();
     });
+  }
+
+  async loadProviders(event?) {
+    const loading = await this.loadingCtrl.create();
+    loading.present();
+
+    this.api.getAllProviders().pipe(
+      tap(data => {
+        this.providers = data;
+      }),
+      finalize(() => {
+        loading.dismiss();
+        if (event) {
+          event.target.complete();
+        }
+      })
+    ).subscribe();
   }
 
   signOut() {

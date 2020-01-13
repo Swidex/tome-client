@@ -22,12 +22,12 @@
 
       <form (ngSubmit)="updateUser()" [formGroup]="userForm">
         <ion-list>
-          <ion-item lines="none">
-            <ion-label position="stacked">First name</ion-label>
+          <ion-item>
+            <ion-label position="stacked">First Name</ion-label>
             <ion-input type="text" formControlName="first_name"></ion-input>
           </ion-item>
 
-          <ion-item lines="none">
+          <ion-item>
             <ion-label position="stacked">Last name</ion-label>
             <ion-input type="text" formControlName="last_name"></ion-input>
           </ion-item>
@@ -39,10 +39,10 @@
 
         </ion-list>
 
-        <ion-button class="ion-padding-horizontal" color="primary" expand="full" type="submit"
-          [disabled]="!userForm.valid">Update Account</ion-button>
+        <ion-button class="ion-padding-horizontal" color="secondary" expand="full" type="submit"
+          [disabled]="!userForm.valid">Update</ion-button>
         <ion-button class="ion-padding-horizontal" color="danger" expand="full" type="button" (click)="deleteAccount()">
-          Delete my account</ion-button>
+          Delete Account</ion-button>
       </form>
 
     </ion-card-content>
