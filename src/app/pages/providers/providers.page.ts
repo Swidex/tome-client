@@ -4,6 +4,17 @@ import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker,
+  Environment
+} from '@ionic-native/google-maps/ngx';
 
 @Component({
   selector: 'app-providers',
@@ -11,22 +22,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./providers.page.scss'],
 })
 export class ProvidersPage implements OnInit {
+  
 
   providerCredentials = {
     name: ''
   };
 
   providers: Provider[] = [];
+  google: GoogleMaps;
+  directionsService: any;
+  distance:any='';
  
   constructor(
     private api: ApiService,
-    private router: Router,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private geolocation: Geolocation
   ) {}
  
   ngOnInit() {
     this.loadProviders();
+    this.findDist(41.5999892,-93.6210513)
   }
  
   async pair() {
@@ -63,6 +79,30 @@ export class ProvidersPage implements OnInit {
         }
       })
     ).subscribe();
+  }
+
+  findDist(targetLat,targetLng) {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.getDirections(resp.coords.latitude,resp.coords.longitude,targetLat,targetLng)
+    }).catch((error) => {
+      console.log('Error: Failed to get location', error);
+    });
+  }
+
+  getDirections(userLat,userLng,targetLat,targetLng){
+    let userPos = { lat:userLat, lng:userLng};
+    let targetPos = { lat:targetLat, lng:targetLng};
+    this.directionsService.pipe({
+      origin : userPos,
+      destination : targetPos,
+    }, (response) => {
+        for (var i = 0; i < response.routes.length; i++) {
+          let x = i+1;
+          this.distance += x +') '+ response.routes[i].legs[0].distance.text +', ' ;
+          console.log('distance',this.distance);
+        }
+        console.log('response:-',response);
+    });
   }
 
   signOut() {
