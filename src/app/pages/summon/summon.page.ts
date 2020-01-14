@@ -37,6 +37,15 @@ export class SummonPage implements OnInit{
      });
   }
 
+  updateLocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.map.remove();
+      this.loadMap(resp.coords.latitude,resp.coords.longitude)
+    }).catch((error) => {
+      console.log('Error: Failed to get location', error);
+    });
+  }
+
   loadMap(lat,long) {
   
     // This code is necessary for browser
@@ -60,6 +69,15 @@ export class SummonPage implements OnInit{
 
     this.map = GoogleMaps.create('map_canvas', mapOptions);
 
+    let userLocationMarker: Marker = this.map.addMarkerSync({
+      title: 'You',
+      icon: 'blue',
+      animation: 'DROP',
+      position: {
+        lat: lat,
+        lng: long
+      }
+    });
   }
 
   signOut() {

@@ -32,7 +32,7 @@ export class RegisterPage implements OnInit {
       finalize(() => loading.dismiss())
     )
     .subscribe(res => {
-        this.router.navigateByUrl('/app');
+        this.router.navigateByUrl('/tutorial');
     }, async err => {
       const alert = await this.alertCtrl.create({
         header: 'Registration failed',

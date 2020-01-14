@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ProvidersPage implements OnInit {
 
-  credentials = {
+  providerCredentials = {
     name: ''
   };
 
@@ -33,7 +33,7 @@ export class ProvidersPage implements OnInit {
     const loading = await this.loadingCtrl.create();
     loading.present();
 
-    this.api.pair(this.credentials).pipe(
+    this.api.pair(this.providerCredentials).pipe(
       finalize(() => loading.dismiss())
     )
     .subscribe(res => {

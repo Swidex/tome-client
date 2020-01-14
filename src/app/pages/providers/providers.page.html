@@ -19,9 +19,9 @@
     <ion-card-content>
       <ion-item>
         <ion-icon class="field-icon" name="link"></ion-icon>
-        <ion-input required=true placeholder="Provider ID" name="name" [(ngModel)]="credentials.name"></ion-input>
+        <ion-input required=true placeholder="Provider ID" name="name" type="text" [(ngModel)]="providerCredentials.name"></ion-input>
       </ion-item><br>
-      <ion-button color="secondary" type="submit" size="full" expand="block" (click)="pair()">PAIR</ion-button>
+      <ion-button color="secondary" type="submit" size="full" expand="block" (click)="pair()" [disabled]="providerCredentials.name == ''">Pair</ion-button>
     </ion-card-content>
   </ion-card>
   
@@ -43,10 +43,33 @@
     <ion-card class="ion-padding" *ngFor="let provider of providers">
 
       <ion-card-header>
-        <ion-card-title>
-          {{ provider.name }}
+        <ion-card-title translucent="true">
+          <b>{{ provider.name }}</b> 12 mi.
         </ion-card-title>
+        <ion-card-subtitle>
+          {{ provider.address }}
+        </ion-card-subtitle>
       </ion-card-header>
+
+      <ion-chip color="success">Wheelchair-Accessible</ion-chip>
+      <ion-chip color="success"><ion-icon class="field-icon" name="flash"></ion-icon>Available Now</ion-chip>
+      <ion-chip color="success"><ion-icon class="field-icon" name="checkmark"></ion-icon>Verified</ion-chip>
+
+      <ion-grid>
+        <ion-row class="ion-justify-content-center ion-align-items-center">
+          <ion-button routerLink="/app/summon" fill="clear" expand="block" style="width: 48%">
+            <ion-icon class="field-icon" name="book"></ion-icon>
+            <ion-label>SUMMON</ion-label>
+          </ion-button>
+    
+          <ion-button fill="clear" expand="block" style="width: 48%">
+            <ion-icon class="field-icon" name="menu"></ion-icon>
+            <ion-label>MORE</ion-label>
+          </ion-button>
+        </ion-row>
+      </ion-grid>
+
+      
 
     </ion-card>
   </ion-list>
