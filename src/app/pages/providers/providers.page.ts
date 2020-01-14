@@ -23,15 +23,14 @@ import {
 })
 export class ProvidersPage implements OnInit {
   
-
+  providers: Provider[] = [];
   providerCredentials = {
     name: ''
   };
 
-  providers: Provider[] = [];
-  google: GoogleMaps;
+  /*google: GoogleMaps;
   directionsService: any;
-  distance:any='';
+  distance:any='';*/
  
   constructor(
     private api: ApiService,
@@ -42,7 +41,7 @@ export class ProvidersPage implements OnInit {
  
   ngOnInit() {
     this.loadProviders();
-    this.findDist(41.5999892,-93.6210513)
+    //this.findDist(41.5999892,-93.6210513)
   }
  
   async pair() {
@@ -81,7 +80,7 @@ export class ProvidersPage implements OnInit {
     ).subscribe();
   }
 
-  findDist(targetLat,targetLng) {
+  /*findDist(targetLat,targetLng) {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.getDirections(resp.coords.latitude,resp.coords.longitude,targetLat,targetLng)
     }).catch((error) => {
@@ -103,7 +102,7 @@ export class ProvidersPage implements OnInit {
         }
         console.log('response:-',response);
     });
-  }
+  }*/
 
   signOut() {
     this.api.logout();

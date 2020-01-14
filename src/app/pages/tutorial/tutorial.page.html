@@ -1,36 +1,29 @@
-<ion-header translucent>
-    <ion-toolbar>
-      <ion-title>Slides</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen padding scroll-y="false">
+  <ion-slides>
 
-  <ion-content fullscreen padding scroll-y="false">
-    <ion-slides>
+    <ion-slide>
+      <img src="../../../assets/slide-1.png"/><br>
+      <h2>Welcome to <b>Tome</b></h2>
+      <p>Tome is a solution that directly addresses the problem of patients and other consumers from traveling between their home and their destination.</p>
+    </ion-slide>
 
-      <ion-slide>
-        <img src="../../../assets/slide-1.png"/><br>
-        <h2>Welcome to <b>Tome</b></h2>
-        <p>Tome is a solution that directly addresses the problem of patients and other consumers from traveling between their home and their destination.</p>
-      </ion-slide>
+    <ion-slide>
+      <img src="../../../assets/slide-2.png"/><br>
+      <h2>How does <b>Tome</b> work?</h2>
+      <p>Providers like hospitals license our app and purchase <b>Tome</b> vehicles for customers. These providers then offer the service to customers as non-emergency transportation.</p>
+    </ion-slide>
 
-      <ion-slide>
-        <img src="../../../assets/slide-2.png"/><br>
-        <h2>How does <b>Tome</b> work?</h2>
-        <p><b>Ionic Framework</b> is an open source SDK that enables developers to build high quality mobile apps with web technologies like HTML, CSS, and JavaScript.</p>
-      </ion-slide>
+    <ion-slide>
+      <img src="../../../assets/slide-3.png"/><br>
+      <p>After pairing with your desired provider, you can request a vehicle at a certain time and date. After the request is approved, the vehicle will be delivered on the desired date.</p>
+    </ion-slide>
 
-      <ion-slide>
-        <img src="../../../assets/slide-3.png"/><br>
-        
-        <p><b>Ionic Pro</b> is a powerful set of services and features built on top of Ionic Framework that brings a totally new level of app development agility to mobile dev teams.</p>
-      </ion-slide>
+    <ion-slide>
+      <img src="../../../assets/slide-4.png"/><br>
+      <h2>Let's learn more about you!</h2>
+      <ion-button routerLink='/app/account' fill="clear"><b>Continue</b><ion-icon slot="end" name="person"></ion-icon></ion-button><br>
+      <ion-button routerLink='/app/providers' fill="clear">Skip<ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+    </ion-slide>
 
-      <ion-slide>
-        <img src="../../../assets/slide-4.png"/><br>
-        <h2>Let's learn more about you</h2>
-        <ion-button routerLink='/app/account' fill="clear"><b>Continue</b><ion-icon slot="end" name="person"></ion-icon></ion-button><br>
-        <ion-button routerLink='/app/providers' fill="clear">Skip<ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
-      </ion-slide>
-
-    </ion-slides>
-  </ion-content>
+  </ion-slides>
+</ion-content>

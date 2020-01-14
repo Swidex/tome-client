@@ -24,9 +24,8 @@ export interface User {
 
 export interface Provider {
   name: string;
-  id: string;
+  address: string;
   _id: string;
-  expanded?: boolean;
 }
 
 @Injectable({
@@ -86,7 +85,7 @@ export class ApiService {
     );
   }
 
-  pair(providerCredentials: {name: string}) {
+  pair(providerCredentials: { name: string }) {
     return this.http.post(`${environment.apiUrl}/providers`, providerCredentials).pipe(
       take(1),
       switchMap(res => {
