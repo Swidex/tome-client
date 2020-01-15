@@ -75,7 +75,7 @@ export class ApiService {
     );
   }
  
-  register(credentials: {email: string, password: string }) {
+  register(credentials: {email: string, password: string, first_name: string, last_name: string }) {
     return this.http.post(`${environment.apiUrl}/users`, credentials).pipe(
       take(1),
       switchMap(res => {

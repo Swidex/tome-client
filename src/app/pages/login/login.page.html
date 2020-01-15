@@ -1,26 +1,29 @@
-<ion-content color="primary">
-  <ion-grid style="height:100%">
-    <ion-row style="height:100%" class="ion-justify-content-center ion-align-items-center" color="primary">
-      <img src="../../../assets/fullLogo_transparent.png" style="width:15em" position="stacked">
-      <ion-card color="dark" style="width:90%">
-        <div class="ion-padding">
-          <ion-item color="dark" position="stacked">
-            <ion-icon name="mail"></ion-icon>
-            <ion-input required=true placeholder="Email" autofocus=true name="email" type="text" [(ngModel)]="credentials.email"></ion-input>
-          </ion-item><br>
-          <ion-item color="dark" position="stacked">
-            <ion-icon name="lock"></ion-icon>
-            <ion-input required=true placeholder="Password" name="password" type="password" [(ngModel)]="credentials.password"></ion-input>
-          </ion-item>
-        </div>
-        <div padding position="stacked">
-          <ion-button color="secondary" type="submit" size="full" expand="block" (click)="login()">LOGIN</ion-button>
-        </div>
-        <div padding>
-          <ion-button routerLink="/register" routerDirection="forward" color="secondary" size="full" expand="block">REGISTER</ion-button>
-        </div>
-      </ion-card>
-    </ion-row>
-  </ion-grid>
+<ion-content class="ion-padding" color="primary">
+  <div class="grid-wrap">
+    <div class="logo-wrap">
+      <img src="../../../assets/fullLogo_transparent.png" style="height:10vh" position="stacked">
+    </div>
+    <ion-card color="dark" class="login-card">
+      <div class="ion-padding">
+        <ion-card-header>
+          <ion-card-title>Sign In</ion-card-title>
+        </ion-card-header>
+        <ion-item color="dark" position="stacked">
+          <ion-input required=true placeholder="Email" autofocus=true name="email" type="text" [(ngModel)]="credentials.email"></ion-input>
+        </ion-item>
+        <ion-item color="dark" position="stacked">
+          <ion-input required=true placeholder="Password" name="password" type="password" [(ngModel)]="credentials.password"></ion-input>
+        </ion-item>
+      </div>
+    </ion-card>
+    <div class="footer">
+      <ion-button routerLink="/register" routerDirection="forward" color="secondary">Register</ion-button>
+      <span class="buffer"></span>
+      <ion-button color="secondary" type="submit" (click)="login()" [disabled]="credentials.email == '' || credentials.password == ''">
+        Sign In&nbsp;&nbsp;
+        <ion-icon name="arrow-forward"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
 </ion-content>
       

@@ -12,7 +12,9 @@ import { finalize } from 'rxjs/operators';
 export class RegisterPage implements OnInit {
   credentials = {
     email: '',
-    password: ''
+    password: '',
+    first_name: '',
+    last_name: '',
   };
  
   constructor(
@@ -32,7 +34,9 @@ export class RegisterPage implements OnInit {
       finalize(() => loading.dismiss())
     )
     .subscribe(res => {
+      if (res) {
         this.router.navigateByUrl('/tutorial');
+      }  
     }, async err => {
       const alert = await this.alertCtrl.create({
         header: 'Registration failed',

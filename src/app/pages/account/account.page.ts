@@ -23,7 +23,13 @@ export class AccountPage implements OnInit {
     this.userForm = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      bio: ''
+      weight: '',
+      weight_unit: '',
+      birthday: '',
+      address: '',
+      zip: '',
+      state: '',
+      city: ''
     });
     this.loadUserData();
   }
