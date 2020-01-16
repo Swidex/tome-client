@@ -56,6 +56,16 @@ const routes: Routes = [
               import('../account/account.module').then(m => m.AccountPageModule)
           }
         ]
+      },
+      {
+        path: 'admin',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../admin/admin.module').then(m => m.AdminPageModule)
+          }
+        ]
       }
     ]
   }

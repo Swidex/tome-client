@@ -50,8 +50,8 @@ export class SummonPage implements OnInit{
   
     // This code is necessary for browser
     Environment.setEnv({
-      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyAuAa0Ckp0xVmn-dw9upNfdakZ2-bQs0mE',
-      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyAuAa0Ckp0xVmn-dw9upNfdakZ2-bQs0mE'
+      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyCL7T7FQ7DvD-aXyD6gt9jFRtWI64KVC6s',
+      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyCL7T7FQ7DvD-aXyD6gt9jFRtWI64KVC6s'
     });
 
     let mapOptions: GoogleMapOptions = {

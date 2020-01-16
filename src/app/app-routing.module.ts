@@ -22,7 +22,11 @@ const routes: Routes = [
       import('./pages/tabs/tabs.module').then(m => m.TabsPageModule),
     canActivate: [AuthGuard]
   },
-  { path: 'tutorial', loadChildren: './pages/tutorial/tutorial.module#TutorialPageModule' }
+  { path: 'tutorial',
+    loadChildren: () =>
+      import('./pages/tutorial/tutorial.module').then(m => m.TutorialPageModule),
+  },
+
 
 
 ];
