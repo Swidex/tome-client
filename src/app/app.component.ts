@@ -13,7 +13,7 @@ import { UsersPage } from './pages/users/users.page';
 })
 export class AppComponent {
 
-  rootPage: any;
+  public rootPage: any;
   
   constructor(
     private platform: Platform,

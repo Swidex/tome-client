@@ -20,7 +20,7 @@ export function jwtOptionsFactory(storage) {
     tokenGetter: () => {
       return storage.get(TOKEN_KEY);
     },
-    whitelistedDomains: ['https://backend-dot-iconic-ruler-265313.appspot.com', 'localhost:8100'] // Add your Heroku URL in here!
+    whitelistedDomains: ['https://backend-dot-iconic-ruler-265313.appspot.com/', 'mongodb+srv://cluster0-2j6j8.gcp.mongodb.net'] // Add your Heroku URL in here!
   }
 }
 @NgModule({

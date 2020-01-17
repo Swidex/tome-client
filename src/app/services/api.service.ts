@@ -33,6 +33,7 @@ export interface Provider {
 })
 export class ApiService {
   public user: Observable<any>;
+  public provider: Observable<any>;
   private userData = new BehaviorSubject(null);
  
   constructor(private storage: Storage, private http: HttpClient, private plt: Platform, private router: Router) { 
