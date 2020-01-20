@@ -21,13 +21,18 @@ export class RegisterPage implements OnInit {
     private api: ApiService,
     private router: Router,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController
+    private loadingController: LoadingController
   ) {}
  
   ngOnInit() { }
  
   async register() {
-    const loading = await this.loadingCtrl.create();
+    const loading = await this.loadingController.create({
+      spinner: "crescent",
+      translucent: true,
+      duration: 5000,
+      cssClass: 'loading',
+    });
     loading.present();
 
     this.api.register(this.credentials).pipe(

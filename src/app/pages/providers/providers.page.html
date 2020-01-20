@@ -19,9 +19,9 @@
     <ion-card-content>
       <ion-item>
         <ion-icon class="field-icon" name="link"></ion-icon>
-        <ion-input required=true placeholder="Provider ID" name="name" type="text" [(ngModel)]="providerCredentials.name"></ion-input>
+        <ion-input required=true placeholder="Provider ID" name="pid" type="text" [(ngModel)]="providerCredentials.pid"></ion-input>
       </ion-item><br>
-      <ion-button color="secondary" type="submit" size="full" expand="block" (click)="pair()" [disabled]="providerCredentials.name == ''">Pair</ion-button>
+      <ion-button color="secondary" type="submit" size="full" expand="block" (click)="pair()" [disabled]="providerCredentials.pid == ''">Pair</ion-button>
     </ion-card-content>
   </ion-card>
   

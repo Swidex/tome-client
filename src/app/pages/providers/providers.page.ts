@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService, Provider } from '../../services/api.service';
+import { ApiService, Provider, User } from '../../services/api.service';
 import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
 import { LoadingController, AlertController } from '@ionic/angular';
@@ -25,8 +25,9 @@ export class ProvidersPage implements OnInit {
   
   providers: Provider[] = [];
   providerCredentials = {
-    name: ''
+    pid: ''
   };
+  user: User;
 
   /*google: GoogleMaps;
   directionsService: any;
@@ -35,7 +36,7 @@ export class ProvidersPage implements OnInit {
   constructor(
     private api: ApiService,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController,
+    private loadingController: LoadingController,
     private geolocation: Geolocation
   ) {}
  
@@ -45,10 +46,15 @@ export class ProvidersPage implements OnInit {
   }
  
   async pair() {
-    const loading = await this.loadingCtrl.create();
+    const loading = await this.loadingController.create({
+      spinner: "crescent",
+      translucent: true,
+      duration: 5000,
+      cssClass: 'loading',
+    });
     loading.present();
 
-    this.api.pair(this.providerCredentials).pipe(
+    this.api.joinProvider(this.providerCredentials).pipe(
       finalize(() => loading.dismiss())
     )
     .subscribe(res => {
@@ -64,20 +70,27 @@ export class ProvidersPage implements OnInit {
   }
 
   async loadProviders(event?) {
-    const loading = await this.loadingCtrl.create();
+    const loading = await this.loadingController.create({
+      spinner: "crescent",
+      translucent: true,
+      duration: 5000,
+      cssClass: 'loading',
+    });
     loading.present();
 
-    this.api.getAllProviders().pipe(
-      tap(data => {
-        this.providers = data;
-      }),
-      finalize(() => {
-        loading.dismiss();
-        if (event) {
-          event.target.complete();
-        }
-      })
-    ).subscribe();
+    this.api.getUserData().subscribe(res => {
+      this.api.getProvider(res.pid).pipe(
+        tap(data => {
+          this.providers = data;
+        }),
+        finalize(() => {
+          loading.dismiss();
+          if (event) {
+            event.target.complete();
+          }
+        })
+      ).subscribe();
+    });
   }
 
   /*findDist(targetLat,targetLng) {

@@ -12,6 +12,7 @@ const helper = new JwtHelperService();
 export const TOKEN_KEY = 'jwt-token';
 
 export interface User {
+  pid: string;
   first_name: string;
   last_name: string;
   email: string;
@@ -86,13 +87,33 @@ export class ApiService {
     );
   }
 
-  pair(providerCredentials: { name: string }) {
+  createProvider(providerCredentials: { name: string }) {
     return this.http.post(`${environment.apiUrl}/providers`, providerCredentials).pipe(
       take(1),
       switchMap(res => {
         console.log('result: ', res);
         return this.getAllProviders();
       })
+    );
+  }
+
+  joinProvider(providerCredentials: { pid: string }) {
+    const id = providerCredentials.pid;
+    const uid = this.getUserToken()['id'];
+    return this.http.get<Provider>(`${environment.apiUrl}/providers/${id}`).pipe(
+      take(1),
+      switchMap(res => {
+        console.log('result: ', res);
+        return this.http.put(`${environment.apiUrl}/users/${uid}`, providerCredentials).pipe(
+          take(1)
+        );
+      })
+    );
+  }
+
+  getProvider(pid): Observable<Provider[]> {
+    return this.http.get<Provider[]>(`${environment.apiUrl}/providers/${pid}`).pipe(
+      take(1)
     );
   }
 
