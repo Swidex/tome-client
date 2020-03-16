@@ -1,9 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>admin</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="signOut()">
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Provider Panel</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-card>
+    
+      <div class="ion-padding">
+        <ion-card-header>
+          <ion-title>Create New</ion-title>
+        </ion-card-header>
+        <ion-item position="stacked">
+          <ion-input required=true placeholder="Name" autofocus=true name="name" type="text" [(ngModel)]="credentials.name"></ion-input>
+        </ion-item>
+        <ion-item position="stacked">
+          <ion-input required=true placeholder="Address" name="address" type="text" [(ngModel)]="credentials.address"></ion-input>
+        </ion-item>
+        <ion-item position="stacked">
+          <ion-input required=true placeholder="ZIP Code" name="zip" type="text" [(ngModel)]="credentials.zip"></ion-input>
+        </ion-item>
+        <ion-item position="stacked">
+          <ion-input required=true placeholder="State" name="state" type="text" [(ngModel)]="credentials.state"></ion-input>
+        </ion-item>
+        <ion-item position="stacked">
+          <ion-input required=true placeholder="City" name="city" type="text"  [(ngModel)]="credentials.city"></ion-input>
+        </ion-item>
+        <ion-button color="secondary" expand="block" type="submit" (click)="createProvider()">
+          Create
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+  </ion-card>
 
 </ion-content>

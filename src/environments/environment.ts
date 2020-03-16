@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // apiUrl: 'http://localhost:5000',
-  apiUrl: 'https://backend-dot-iconic-ruler-265313.appspot.com'
+  apiUrl: 'http://localhost:5000'
+  // apiUrl: 'https://backend-dot-iconic-ruler-265313.appspot.com'
 };
 
 /*

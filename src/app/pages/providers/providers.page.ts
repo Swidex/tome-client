@@ -79,6 +79,7 @@ export class ProvidersPage implements OnInit {
     loading.present();
 
     this.api.getUserData().subscribe(res => {
+      console.log(res);
       this.api.getProvider(res.pid).pipe(
         tap(data => {
           this.providers = data;

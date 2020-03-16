@@ -87,7 +87,7 @@ export class ApiService {
     );
   }
 
-  createProvider(providerCredentials: { name: string }) {
+  createProvider(providerCredentials: { name: string, address: string, state: string, city: string, zip: string }) {
     return this.http.post(`${environment.apiUrl}/providers`, providerCredentials).pipe(
       take(1),
       switchMap(res => {

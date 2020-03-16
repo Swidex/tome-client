@@ -38,7 +38,7 @@ export class LoginPage implements OnInit {
     )
     .subscribe(res => {
       if (res) {
-        this.router.navigateByUrl('/app');
+        this.router.navigateByUrl('/providers');
       }
     }, async err => {
       const alert = await this.alertCtrl.create({
